@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('currency',3)->deafult('USD');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
