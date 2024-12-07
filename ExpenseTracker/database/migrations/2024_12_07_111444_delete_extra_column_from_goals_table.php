@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expense_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+        Schema::table('goals', function (Blueprint $table) {
+            $table->dropColumn('notes');
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_categories');
+        Schema::table('goals', function (Blueprint $table) {
+            $table->string('notes')->nullable();
+        });
     }
 };

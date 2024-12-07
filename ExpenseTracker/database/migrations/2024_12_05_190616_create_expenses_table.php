@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
+            $table->string('description')->nullable();
+            $table->decimal('amount',10,2);
+            $table->unsignedBigInteger('expense_category_id');
+            $table->unsignedBigInteger('user')->nullable();
+            $table->string('currency',3)->deafult('USD');
+            $table->date('date');
+            $table->enum('status',['paid','unpaid']);
             $table->timestamps();
         });
     }

@@ -26,5 +26,8 @@ class Expense extends Model
     public function expenseCategories(){
         return $this->belongTo(ExpenseCategory::class);
     }
+    protected $casts = [
+        'date'=>'date', //ovo osigurava da se 'date' pretvara u Carbon instancu
+    ];
 
 }

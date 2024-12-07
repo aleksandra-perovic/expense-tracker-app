@@ -22,4 +22,9 @@ class Goal extends Model
     public function user(){
         return $this->belongTo(User::class);
     }
+
+    protected $casts = [
+        'deadline'=>'date', //ovo osigurava da se 'date' pretvara u Carbon instancu
+    ];
+
 }

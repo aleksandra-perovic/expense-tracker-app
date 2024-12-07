@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
+            $table->string('description')->nullable();
+            $table->decimal('amount',10,2);
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('source')->nullable();
+            $table->date('date');
+            $table->string('currency',3)->deafult('USD');
             $table->timestamps();
         });
     }

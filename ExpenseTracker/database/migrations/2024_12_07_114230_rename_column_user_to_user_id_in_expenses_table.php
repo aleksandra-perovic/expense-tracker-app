@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expense_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+        Schema::table('expenses', function (Blueprint $table) {
+            $table->renameColumn('user','user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_categories');
+        Schema::table('expenses', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->renameColumn('user_id','user');
+        });
     }
 };
