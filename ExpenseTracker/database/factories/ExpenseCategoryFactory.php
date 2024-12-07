@@ -16,8 +16,11 @@ class ExpenseCategoryFactory extends Factory
      */
     public function definition()
     {
+        $categories=['Grocieries','Utilites','Transcription','Rent','Entertainment','Healthcare','Education','Dining Out','Savings','Investments','Insurance','Personal Care','Travel','Gifts','Clothing','Subscriptions'];
+
         return [
-            //
+            'name'=>$this->faker->randomElement($categories),
+            'user_id'=>$this->faker->numberBetween(1,20),
         ];
     }
 }

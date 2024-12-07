@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Goal;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,19 @@ class GoalFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model=Goal::class;
     public function definition()
     {
+        $statuses= ['in_progress','achieved','failed'];
         return [
-            //
+            
+            'title'=>$this->faker->sentence(),
+            'description'=>$this->faker->paragraph(),
+            'target_amount'=>$this->faker->randomFloat(2,500,50000),
+            'current_amount'=>$this->faker->randomFloat(2,0,25000),
+            'user_id'=>User::inRandomOrder()->first()->id,
+            'deadline'=>$this->faker->optional()->date(),
+            'status'=>$this->faker->randomElement($statuses),
         ];
     }
 }
